@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+  background-color: #F1F1F1;
+}
+
+ 
+@layer base {
+    .h1 {
+      @apply text-4xl lg:text-6xl font-bold;
+    }
+    .h2{
+        @apply text-2xl lg:text-4xl font-bold;
+    }
+    .h3{
+        @apply text-lg  lg:text-xl font-semibold;
+    }
+    .h4{
+        @apply text-sm text-justify lg:text-xl font-medium;
+    }
+    .h5{
+        @apply text-base text-letter-black font-medium;
+    }
+    .para {
+      @apply text-base font-normal;
+    }
+  }

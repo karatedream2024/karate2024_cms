@@ -1,0 +1,1 @@
+    export  const DojoName = ["Edappadi", "Poolampati", "Chittur", "Kullampatti"]

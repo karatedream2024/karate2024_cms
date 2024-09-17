@@ -1,0 +1,53 @@
+.containerpaginate {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* Increased gap for better spacing */
+    padding: 10px;
+    background-color: #f5f5f5; /* Light background for the pagination container */
+  }
+  
+  .paginate-link {
+    background-color: #ffffff; /* Default background color for pagination links */
+    border: 1px solid #dcdcdc; /* Light grey border */
+    border-radius: 50%;
+    font-size: 14px;
+    font-family: "Nunito", sans-serif;
+    height: 45px;
+    width: 45px;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
+    cursor: pointer;
+  }
+  
+  .paginate-link:hover {
+    background-color: red; /* Light grey background on hover */
+  }
+  
+  .inactivemypaginate {
+    color: blue; /* Darker grey text for inactive links */
+  }
+  
+  .activemypaginate {
+    color: red ; /* White text for the active page */
+    background-image: linear-gradient(to top, #4f8290, #558a98); /* Subtle gradient for active page */
+    border: 1px solid #4f8290; /* Border color matching the gradient */
+  }
+  
+  .active-paginate-link {
+    color: green ; /* Ensure text color is white for active page */
+  }
+  
+  .nextLabel, .previousLabel {
+    color: #666; /* Default color for arrows */
+    font-size: 18px; /* Larger size for better visibility */
+    transition: color 0.3s;
+  }
+  
+  .nextLabel:hover, .previousLabel:hover {
+    color: #333; /* Darker grey on hover */
+  }
+  
