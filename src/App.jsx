@@ -45,22 +45,22 @@ function App() {
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           {isLoggedIn ? (
-            <Route path="/cms" element={<Navbar />}>
+            <Route path="/" element={<Navbar />}>
               <Route index element={<Student />} />
-              <Route path="/cms/event" element={<Event />} />
-              <Route path="/cms/dojo" element={<Dojo />} />
-              <Route path="/cms/blog" element={<Blog />} />
-              <Route path="/cms/attendence" element={<Attendence />} />
-              <Route path="/cms/addstudent" element={<AddStudent />} />
-              <Route path="/cms/addstudent/:id" element={<AddStudent />} />
-              <Route path="/cms/showatten" element={<Showatten />} />
-              <Route path="/cms/register" element={<Register />} />
-              <Route path="/cms/contact" element={<Contact />} />
-              <Route path="/cms/tournment" element={<Tournament />} />
-              <Route path="/cms/user" element={<User />} />
+              <Route path="/event" element={<Event />} />
+              <Route path="/dojo" element={<Dojo />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/attendence" element={<Attendence />} />
+              <Route path="/addstudent" element={<AddStudent />} />
+              <Route path="/addstudent/:id" element={<AddStudent />} />
+              <Route path="/showatten" element={<Showatten />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/tournment" element={<Tournament />} />
+              <Route path="/user" element={<User />} />
             </Route>
           ) : (
-            <Route path="/cms" element={<LoginPage />} />
+            <Route path="/" element={<LoginPage />} />
           )}
         </Routes> 
       </Suspense> 

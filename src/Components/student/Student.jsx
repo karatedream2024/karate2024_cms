@@ -121,7 +121,7 @@ function Student() {
   };
 
   const handleAddStudentClick = () => {
-    navigate('/cms/addstudent');
+    navigate('/addstudent');
   };
 
   function searchmine(data) {
@@ -246,7 +246,7 @@ function Student() {
               <td className="px-4 py-2 flex justify-center items-center gap-5">
                 <button onClick={() => {
                   const queryStringData = queryString.stringify(student);
-                  navigate(`/cms/addstudent?${queryStringData}`);
+                  navigate(`/addstudent?${queryStringData}`);
                 }}>
                   <FaCloudUploadAlt className="h-6 w-6" />
                 </button>

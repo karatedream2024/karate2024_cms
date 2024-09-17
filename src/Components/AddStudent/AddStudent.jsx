@@ -44,7 +44,7 @@ function AddStudent() {
           toast.success('Student updated successfully', { autoClose: 2000 });
           setTimeout(() => {
             
-          navigate('/cms');
+          navigate('/');
           }, 2000);
         })
         .catch(err => {
@@ -58,7 +58,7 @@ function AddStudent() {
           toast.success('Student added successfully', { autoClose: 2000 });
           setTimeout(() => {
             
-            navigate('/cms');
+            navigate('/');
             }, 2000);
         })
         .catch(err => {

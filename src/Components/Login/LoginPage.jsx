@@ -42,7 +42,7 @@ function LoginPage() {
       
       setTimeout(() => {
         
-      navigate('/cms');
+      navigate('/');
       }, 2000);
     } catch (error) {
       toast.error('Login failed');

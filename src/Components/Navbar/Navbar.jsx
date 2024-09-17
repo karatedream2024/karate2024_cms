@@ -41,7 +41,7 @@ function Navbar({getlogin}) {
   function localstorageclear() {
     localStorage.removeItem('login')
   getlogin('d')
-    navigate('/cms')
+    navigate('/')
 
 
 
@@ -50,7 +50,7 @@ function Navbar({getlogin}) {
   function logout(){
 
     localStorage.removeItem('userlogindata')
-    navigate('/cms')
+    navigate('/')
     dispatch(authdata('range'));
 
   }
@@ -98,101 +98,101 @@ function Navbar({getlogin}) {
 
             </div>
           </div>
-          <Link to='/cms'>
-            <div onClick={() => navbarchange('/cms')} className={`${nav === '/cms' ? 'border-l-4 rounded-full text-blue' : ''} `}>
+          <Link to='/'>
+            <div onClick={() => navbarchange('/')} className={`${nav === '/' ? 'border-l-4 rounded-full text-blue' : ''} `}>
               <hr className='text-line' />
 
-              <div className={` ${nav === '/cms' ? 'text-blue' : ''} my-3 pl-10 h5s`} >
+              <div className={` ${nav === '/' ? 'text-blue' : ''} my-3 pl-10 h5s`} >
                 Dashboard
               </div>
               <hr className='text-line' />
             </div>
           </Link>
-          <Link to='/cms/attendence'>
-            <div onClick={() => navbarchange('/cms/attendence')} className={`${nav === '/cms/attendence' ? 'border-l-4 rounded-full text-blue' : ''} `}>
+          <Link to='/attendence'>
+            <div onClick={() => navbarchange('/attendence')} className={`${nav === '/attendence' ? 'border-l-4 rounded-full text-blue' : ''} `}>
               <hr className='text-line' />
 
-              <div className={` ${nav === '/cms/attendence' ? 'text-blue' : ''} my-3 pl-10 h5`} >
+              <div className={` ${nav === '/attendence' ? 'text-blue' : ''} my-3 pl-10 h5`} >
               Add  Attendence
               </div>
               <hr className='text-line' />
             </div>
           </Link>
-          <Link to='/cms/showatten'>
-            <div onClick={() => navbarchange('/cms/showatten')} className={`${nav === '/cms/showatten' ? 'border-l-4 rounded-full text-blue' : ''} `}>
+          <Link to='/showatten'>
+            <div onClick={() => navbarchange('/showatten')} className={`${nav === '/showatten' ? 'border-l-4 rounded-full text-blue' : ''} `}>
               <hr className='text-line' />
 
-              <div className={` ${nav === '/cms/showatten' ? 'text-blue' : ''} my-3 pl-10 h5`} >
+              <div className={` ${nav === '/showatten' ? 'text-blue' : ''} my-3 pl-10 h5`} >
                 Attendence
               </div>
               <hr className='text-line' />
             </div>
           </Link>
-          <Link to='/cms/event'>
-            <div onClick={() => navbarchange('/cms/event')} className={`${nav === '/cms/event' ? 'border-l-4 rounded-full text-blue' : ''} `}>
+          <Link to='/event'>
+            <div onClick={() => navbarchange('/event')} className={`${nav === '/event' ? 'border-l-4 rounded-full text-blue' : ''} `}>
               <hr className='text-line' />
 
-              <div className={` ${nav === '/cms/event' ? 'text-blue' : ''} my-3 pl-10 h5`} >
+              <div className={` ${nav === '/event' ? 'text-blue' : ''} my-3 pl-10 h5`} >
                 Event
               </div>
               <hr className='text-line' />
             </div>
           </Link>
-          <Link to='/cms/dojo'>
-            <div onClick={() => navbarchange('/cms/dojo')} className={`${nav === '/cms/dojo' ? 'border-l-4 rounded-full text-blue' : ''} `}>
+          <Link to='/dojo'>
+            <div onClick={() => navbarchange('/dojo')} className={`${nav === '/dojo' ? 'border-l-4 rounded-full text-blue' : ''} `}>
               <hr className='text-line' />
 
-              <div className={` ${nav === '/cms/dojo' ? 'text-blue' : ''} my-3 pl-10 h5`} >
+              <div className={` ${nav === '/dojo' ? 'text-blue' : ''} my-3 pl-10 h5`} >
                 dojo
               </div>
               <hr className='text-line' />
             </div>
           </Link>
-          <Link to='/cms/blog'>
-            <div onClick={() => navbarchange('/cms/blog')} className={`${nav === '/cms/blog' ? 'border-l-4 rounded-full text-blue' : ''} `}>
+          <Link to='/blog'>
+            <div onClick={() => navbarchange('/blog')} className={`${nav === '/blog' ? 'border-l-4 rounded-full text-blue' : ''} `}>
               <hr className='text-line' />
 
-              <div className={` ${nav === '/cms/blog' ? 'text-blue' : ''} my-3 pl-10 h5`} >
+              <div className={` ${nav === '/blog' ? 'text-blue' : ''} my-3 pl-10 h5`} >
                 Blog
               </div>
               <hr className='text-line' />
             </div>
           </Link>
-          <Link to='/cms/register'>
-            <div onClick={() => navbarchange('/cms/register')} className={`${nav === '/cms/register' ? 'border-l-4 rounded-full text-blue' : ''} `}>
+          <Link to='/register'>
+            <div onClick={() => navbarchange('/register')} className={`${nav === '/register' ? 'border-l-4 rounded-full text-blue' : ''} `}>
               <hr className='text-line' />
 
-              <div className={` ${nav === '/cms/register' ? 'text-blue' : ''} my-3 pl-10 h5`} >
+              <div className={` ${nav === '/register' ? 'text-blue' : ''} my-3 pl-10 h5`} >
               Register
               </div>
               <hr className='text-line' />
             </div>
           </Link>
-          <Link to='/cms/contact'>
-            <div onClick={() => navbarchange('/cms/contact')} className={`${nav === '/cms/contact' ? 'border-l-4 rounded-full text-blue' : ''} `}>
+          <Link to='/contact'>
+            <div onClick={() => navbarchange('/contact')} className={`${nav === '/contact' ? 'border-l-4 rounded-full text-blue' : ''} `}>
               <hr className='text-line' />
 
-              <div className={` ${nav === '/cms/contact' ? 'text-blue' : ''} my-3 pl-10 h5`} >
+              <div className={` ${nav === '/contact' ? 'text-blue' : ''} my-3 pl-10 h5`} >
               Contact
               </div>
               <hr className='text-line' />
             </div>
           </Link>
-          <Link to='/cms/tournment'>
-            <div onClick={() => navbarchange('/cms/tournment')} className={`${nav === '/cms/tournment' ? 'border-l-4 rounded-full text-blue' : ''} `}>
+          <Link to='/tournment'>
+            <div onClick={() => navbarchange('/tournment')} className={`${nav === '/tournment' ? 'border-l-4 rounded-full text-blue' : ''} `}>
               <hr className='text-line' />
 
-              <div className={` ${nav === '/cms/tournment' ? 'text-blue' : ''} my-3 pl-10 h5`} >
+              <div className={` ${nav === '/tournment' ? 'text-blue' : ''} my-3 pl-10 h5`} >
               Tournment
               </div>
               <hr className='text-line' />
             </div>
           </Link>
-          <Link to='/cms/user'>
-            <div onClick={() => navbarchange('/cms/user')} className={`${nav === '/cms/user' ? 'border-l-4 rounded-full text-blue' : ''} `}>
+          <Link to='/user'>
+            <div onClick={() => navbarchange('/user')} className={`${nav === '/user' ? 'border-l-4 rounded-full text-blue' : ''} `}>
               <hr className='text-line' />
 
-              <div className={` ${nav === '/cms/user' ? 'text-blue' : ''} my-3 pl-10 h5`} >
+              <div className={` ${nav === '/user' ? 'text-blue' : ''} my-3 pl-10 h5`} >
               User
               </div>
               <hr className='text-line' />
@@ -222,11 +222,11 @@ function Navbar({getlogin}) {
 
           
 
-        <Link to='/cms'>
-            <div onClick={() => navbarchange('/cms')} className={`${nav === '/cms' ? '' : ''} `}>
+        <Link to='/'>
+            <div onClick={() => navbarchange('/')} className={`${nav === '/' ? '' : ''} `}>
 
 
-            <div className={` ${nav === '/cms' ? 'text-white bg-blue  ' : 'hover:text-logo_blue hover:bg-blue/20 duration-300'} h5 mx-[10%] py-2 rounded-lg mt-2 pl-[10%] flex text-letter-black  `} >
+            <div className={` ${nav === '/' ? 'text-white bg-blue  ' : 'hover:text-logo_blue hover:bg-blue/20 duration-300'} h5 mx-[10%] py-2 rounded-lg mt-2 pl-[10%] flex text-letter-black  `} >
               Dashboard
               </div>
 
@@ -235,21 +235,21 @@ function Navbar({getlogin}) {
  
 
       
-          <Link to='/cms/attendence'>
-            <div onClick={() => navbarchange('/cms/attendence')} className={`${nav === '/cms/attendence' ? '' : ''} `}>
+          <Link to='/attendence'>
+            <div onClick={() => navbarchange('/attendence')} className={`${nav === '/attendence' ? '' : ''} `}>
 
 
-            <div className={` ${nav === '/cms/attendence' ? 'text-white bg-blue  ' : 'hover:text-logo_blue hover:bg-blue/20 duration-300'} h5 mx-[10%] py-2 rounded-lg mt-2 pl-[10%] flex text-letter-black  `} >
+            <div className={` ${nav === '/attendence' ? 'text-white bg-blue  ' : 'hover:text-logo_blue hover:bg-blue/20 duration-300'} h5 mx-[10%] py-2 rounded-lg mt-2 pl-[10%] flex text-letter-black  `} >
               Attendence
               </div>
 
             </div>
           </Link>
-          <Link to='/cms/showatten'>
-            <div onClick={() => navbarchange('/cms/showatten')} className={`${nav === '/cms/showatten' ? '' : ''} `}>
+          <Link to='/showatten'>
+            <div onClick={() => navbarchange('/showatten')} className={`${nav === '/showatten' ? '' : ''} `}>
 
 
-            <div className={` ${nav === '/cms/showatten' ? 'text-white bg-blue  ' : 'hover:text-logo_blue hover:bg-blue/20 duration-300'} h5 mx-[10%] py-2 rounded-lg mt-2 pl-[10%] flex text-letter-black  `} >
+            <div className={` ${nav === '/showatten' ? 'text-white bg-blue  ' : 'hover:text-logo_blue hover:bg-blue/20 duration-300'} h5 mx-[10%] py-2 rounded-lg mt-2 pl-[10%] flex text-letter-black  `} >
              Show Attendence
               </div>
 
@@ -257,72 +257,72 @@ function Navbar({getlogin}) {
           </Link>
 
 
-          <Link to='/cms/event'>
-            <div onClick={() => navbarchange('/cms/event')} className={`${nav === '/cms/event' ? '' : ''} `}>
+          <Link to='/event'>
+            <div onClick={() => navbarchange('/event')} className={`${nav === '/event' ? '' : ''} `}>
 
 
-            <div className={` ${nav === '/cms/event' ? 'text-white bg-blue  ' : 'hover:text-logo_blue hover:bg-blue/20 duration-300'} h5 mx-[10%] py-2 rounded-lg mt-2 pl-[10%] flex text-letter-black  `} >
+            <div className={` ${nav === '/event' ? 'text-white bg-blue  ' : 'hover:text-logo_blue hover:bg-blue/20 duration-300'} h5 mx-[10%] py-2 rounded-lg mt-2 pl-[10%] flex text-letter-black  `} >
             Event
               </div>
 
             </div>
           </Link>
 
-          <Link to='/cms/blog'>
-            <div onClick={() => navbarchange('/cms/blog')} className={`${nav === '/cms/blog' ? '' : ''} `}>
+          <Link to='/blog'>
+            <div onClick={() => navbarchange('/blog')} className={`${nav === '/blog' ? '' : ''} `}>
 
 
-            <div className={` ${nav === '/cms/blog' ? 'text-white bg-blue  ' : 'hover:text-logo_blue hover:bg-blue/20 duration-300'} h5 mx-[10%] py-2 rounded-lg mt-2 pl-[10%] flex text-letter-black  `} >
+            <div className={` ${nav === '/blog' ? 'text-white bg-blue  ' : 'hover:text-logo_blue hover:bg-blue/20 duration-300'} h5 mx-[10%] py-2 rounded-lg mt-2 pl-[10%] flex text-letter-black  `} >
             Blog
               </div>
 
             </div>
           </Link>
-          <Link to='/cms/dojo'>
-            <div onClick={() => navbarchange('/cms/dojo')} className={`${nav === '/cms/dojo' ? '' : ''} `}>
+          <Link to='/dojo'>
+            <div onClick={() => navbarchange('/dojo')} className={`${nav === '/dojo' ? '' : ''} `}>
 
 
-            <div className={` ${nav === '/cms/dojo' ? 'text-white bg-blue  ' : 'hover:text-logo_blue hover:bg-blue/20 duration-300'} h5 mx-[10%] py-2 rounded-lg mt-2 pl-[10%] flex text-letter-black  `} >
+            <div className={` ${nav === '/dojo' ? 'text-white bg-blue  ' : 'hover:text-logo_blue hover:bg-blue/20 duration-300'} h5 mx-[10%] py-2 rounded-lg mt-2 pl-[10%] flex text-letter-black  `} >
             Dojo
               </div>
 
             </div>
           </Link>
-          <Link to='/cms/register'>
-            <div onClick={() => navbarchange('/cms/register')} className={`${nav === '/cms/register' ? '' : ''} `}>
+          <Link to='/register'>
+            <div onClick={() => navbarchange('/register')} className={`${nav === '/register' ? '' : ''} `}>
 
 
-            <div className={` ${nav === '/cms/register' ? 'text-white bg-blue  ' : 'hover:text-logo_blue hover:bg-blue/20 duration-300'} h5 mx-[10%] py-2 rounded-lg mt-2 pl-[10%] flex text-letter-black  `} >
+            <div className={` ${nav === '/register' ? 'text-white bg-blue  ' : 'hover:text-logo_blue hover:bg-blue/20 duration-300'} h5 mx-[10%] py-2 rounded-lg mt-2 pl-[10%] flex text-letter-black  `} >
             Registration
               </div>
 
             </div>
           </Link>
-          <Link to='/cms/contact'>
-            <div onClick={() => navbarchange('/cms/contact')} className={`${nav === '/cms/contact' ? '' : ''} `}>
+          <Link to='/contact'>
+            <div onClick={() => navbarchange('/contact')} className={`${nav === '/contact' ? '' : ''} `}>
 
 
-            <div className={` ${nav === '/cms/contact' ? 'text-white bg-blue  ' : 'hover:text-logo_blue hover:bg-blue/20 duration-300'} h5 mx-[10%] py-2 rounded-lg mt-2 pl-[10%] flex text-letter-black  `} >
+            <div className={` ${nav === '/contact' ? 'text-white bg-blue  ' : 'hover:text-logo_blue hover:bg-blue/20 duration-300'} h5 mx-[10%] py-2 rounded-lg mt-2 pl-[10%] flex text-letter-black  `} >
             Contact
               </div>
 
             </div>
           </Link>
-          <Link to='/cms/tournment'>
-            <div onClick={() => navbarchange('/cms/tournment')} className={`${nav === '/cms/tournment' ? '' : ''} `}>
+          <Link to='/tournment'>
+            <div onClick={() => navbarchange('/tournment')} className={`${nav === '/tournment' ? '' : ''} `}>
 
 
-            <div className={` ${nav === '/cms/tournment' ? 'text-white bg-blue  ' : 'hover:text-logo_blue hover:bg-blue/20 duration-300'} h5 mx-[10%] py-2 rounded-lg mt-2 pl-[10%] flex text-letter-black  `} >
+            <div className={` ${nav === '/tournment' ? 'text-white bg-blue  ' : 'hover:text-logo_blue hover:bg-blue/20 duration-300'} h5 mx-[10%] py-2 rounded-lg mt-2 pl-[10%] flex text-letter-black  `} >
             Tournament
               </div>
 
             </div>
           </Link>
-          <Link to='/cms/user'>
-            <div onClick={() => navbarchange('/cms/user')} className={`${nav === '/cms/user' ? '' : ''} `}>
+          <Link to='/user'>
+            <div onClick={() => navbarchange('/user')} className={`${nav === '/user' ? '' : ''} `}>
 
 
-            <div className={` ${nav === '/cms/user' ? 'text-white bg-blue  ' : 'hover:text-logo_blue hover:bg-blue/20 duration-300'} h5 mx-[10%] py-2 rounded-lg mt-2 pl-[10%] flex text-letter-black  `} >
+            <div className={` ${nav === '/user' ? 'text-white bg-blue  ' : 'hover:text-logo_blue hover:bg-blue/20 duration-300'} h5 mx-[10%] py-2 rounded-lg mt-2 pl-[10%] flex text-letter-black  `} >
             Permission
               </div>
 
@@ -330,9 +330,9 @@ function Navbar({getlogin}) {
           </Link>
 
 
-          {/* <Link to='/cms/cmsupcomingevent'>
-            <div onClick={() => navbarchange('/cms/cmsupcomingevent')} className={`${nav === '/cms/cmsupcomingevent' ? '' : ''} `}>
-              <div className={` ${nav === '/cms/cmsupcomingevent' ? 'text-white bg-blue  ' : ''} h5 mx-[10%] py-2 rounded-lg mt-2 pl-[10%] flex text-letter-black  `} >
+          {/* <Link to='/upcomingevent'>
+            <div onClick={() => navbarchange('/upcomingevent')} className={`${nav === '/upcomingevent' ? '' : ''} `}>
+              <div className={` ${nav === '/upcomingevent' ? 'text-white bg-blue  ' : ''} h5 mx-[10%] py-2 rounded-lg mt-2 pl-[10%] flex text-letter-black  `} >
               Upcoming
               </div>
             </div>
