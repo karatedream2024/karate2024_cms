@@ -8,6 +8,10 @@ import { authdata } from '../../features/slice/login'
 
 function Navbar({getlogin}) {
 
+  const findUser = JSON.parse(localStorage.getItem('userlogindata'))
+ const access = findUser?.userType
+ console.log(access, 'workkk')
+
 
   const locate = useLocation()
 
@@ -98,7 +102,7 @@ function Navbar({getlogin}) {
 
             </div>
           </div>
-          <Link to='/'>
+          <Link   to='/'>
             <div onClick={() => navbarchange('/')} className={`${nav === '/' ? 'border-l-4 rounded-full text-blue' : ''} `}>
               <hr className='text-line' />
 
@@ -119,7 +123,7 @@ function Navbar({getlogin}) {
             </div>
           </Link>
           <Link to='/showatten'>
-            <div onClick={() => navbarchange('/showatten')} className={`${nav === '/showatten' ? 'border-l-4 rounded-full text-blue' : ''} `}>
+            <div  onClick={() => navbarchange('/showatten')} className={`${nav === '/showatten' ? 'border-l-4 rounded-full text-blue' : ''} `}>
               <hr className='text-line' />
 
               <div className={` ${nav === '/showatten' ? 'text-blue' : ''} my-3 pl-10 h5`} >
@@ -222,13 +226,13 @@ function Navbar({getlogin}) {
 
           
 
-        <Link to='/'>
-            <div onClick={() => navbarchange('/')} className={`${nav === '/' ? '' : ''} `}>
+          <Link  to='/'>
+              <div onClick={() => navbarchange('/')} className={`${nav === '/' ? '' : ''} `}>
 
 
-            <div className={` ${nav === '/' ? 'text-white bg-blue  ' : 'hover:text-logo_blue hover:bg-blue/20 duration-300'} h5 mx-[10%] py-2 rounded-lg mt-2 pl-[10%] flex text-letter-black  `} >
-              Dashboard
-              </div>
+              <div className={`  ${nav === '/' ? 'text-white bg-blue  ' : 'hover:text-logo_blue hover:bg-blue/20 duration-300'}  h5 mx-[10%] py-2 rounded-lg mt-2 pl-[10%] flex text-letter-black  `} >
+                Dashboard
+                </div>
 
             </div>
           </Link>

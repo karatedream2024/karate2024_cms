@@ -127,28 +127,59 @@ function Showatten() {
                 <table className="min-w-full  bg-white border border-light-blue rounded-xl shadow-md mt-10">
                     <thead>
                         <tr className="bg-gray-100 border-b border-light-blue h-16">
-                            <th className='w-96'>Identity</th>
+                            <th className='text-center px-2'>Identity</th>
+                            <th className='text-center px-2'> Present</th>
+                            <th className='text-center px-2'> Absent</th>
+                            <th className='text-center px-2'> Late</th>
                             {dateRange.map((date) => (
-                                <th key={date} className='text-center '><div className='w-32'>{date}</div></th>
+                                <th key={date} className='text-center px-2'><div >{date}</div></th>
                             ))}
+                           
                         </tr>
                     </thead>
                     <tbody>
-                        {output?.map((student) => (
-                            <tr key={student._id} className="bg-gray-100 border-b  border-light-blue h-16">
-                                <td className='text-center'>{student?.studentId?.name}</td>
+                        {output?.map((student) => {
+                            let totalPresent = 0;
+                            let totalAbsent = 0;
+                            let totalLate = 0;
 
-                                {dateRange.map((date) => {
-                                    const attendanceRecord = student.attendance.find(record => dayjs(record.date).format('YYYY-MM-DD') === date);
-                                    return (
-                                        <td key={date} className='text-center '>
-                                            {attendanceRecord ? attendanceRecord.status : 'No mark'}
-                                        </td>
-                                    );
-                                })}
-                            </tr>
-                        ))}
+                            const attendanceCells = dateRange.map((date) => {
+                                const attendanceRecord = student.attendance.find(record => dayjs(record.date).format('YYYY-MM-DD') === date);
+                                if (attendanceRecord) {
+                                    switch (attendanceRecord.status) {
+                                        case 'present':
+                                            totalPresent++;
+                                            break;
+                                        case 'absent':
+                                            totalAbsent++;
+                                            break;
+                                        case 'late':
+                                            totalLate++;
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                                }
+                                return (
+                                    <td key={date} className='text-center'>
+                                        {attendanceRecord ? attendanceRecord.status : 'No mark'}
+                                    </td>
+                                );
+                            });
+
+                            return (
+                                <tr key={student._id} className="bg-gray-100 border-b border-light-blue h-16">
+                                    <td className='text-center'>{student?.studentId?.name}</td>
+                                    <td className='text-center'>{totalPresent}</td>
+                                    <td className='text-center'>{totalAbsent}</td>
+                                    <td className='text-center'>{totalLate}</td>
+                                    {attendanceCells}
+                                  
+                                </tr>
+                            );
+                        })}
                     </tbody>
+
                 </table>
             </div>
             <ToastContainer />

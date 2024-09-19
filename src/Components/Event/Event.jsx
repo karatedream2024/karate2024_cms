@@ -266,7 +266,7 @@ function Event() {
             <TextField
                     name="dob"
                     type="date"
-                    label="Date of Birth"
+                    label="Start Date"
                     variant="outlined"
                     fullWidth
                     InputLabelProps={{ shrink: true }}
@@ -279,7 +279,7 @@ function Event() {
             <TextField
                     name="dob"
                     type="date"
-                    label="Date of Birth"
+                    label="End Date"
                     variant="outlined"
                     fullWidth
                     InputLabelProps={{ shrink: true }}

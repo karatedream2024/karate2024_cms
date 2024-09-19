@@ -26,7 +26,7 @@ function LoginPage() {
     
       const userlogindata = {
         email: res?.data[0]?.email,
-        password: res?.data[0]?.password,
+        userType: res?.data[0]?.userType,
         token: res?.token
       };
       
