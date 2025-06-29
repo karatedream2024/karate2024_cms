@@ -23,13 +23,13 @@ const bookingApi = api.injectEndpoints({
     }),  
 
     getAllEvent: builder.query({
-      query: () => ({
-          url: '/event/getevent',
-          method: "GET",
+      query: ({ page, limit, eventtype }) => ({
+        url: `/event/getevent/${limit}/${page}/${eventtype}`,
+        method: "GET",
+        // params: { page, limit, eventtype },
       }),
       providesTags: ['Event'],
-  
-  }),
+    }),
 
   updateEvent: builder.mutation({
     query: ({id,values}) => ({

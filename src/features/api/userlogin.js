@@ -22,13 +22,12 @@ const bookingApi = api.injectEndpoints({
     }),  
 
     getAllDojo: builder.query({
-      query: () => ({
-          url: '/dojo/getdojo',
-          method: "GET",
+      query: ({ page, limit}) => ({
+        url: `/dojo/getdojo/${limit}/${page}`,
+        method: "GET",
       }),
       providesTags: ['Dojo'],
-  
-  }),
+    }),
 
   updateDojo: builder.mutation({
     query: ({id,values}) => ({

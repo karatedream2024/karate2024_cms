@@ -80,7 +80,7 @@ function Attendence() {
             console.log("ranged worked here")
             postattenapi(atten)
               .then(res => {
-                toast.warning('Attendence Updated successfully', {
+                toast.warning('Attendence Added successfully', {
                   autoClose: 2000
                 });
               })

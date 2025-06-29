@@ -19,13 +19,62 @@ import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ReactPaginate from 'react-paginate';
 
-
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
 function Dojo() {
 
+  const [pageclick, setPageClick] = useState(1);
+  const [search, setSearch] = useState("")
+  const [limit, setlimit] = useState(3)
+  const [initial, setinital] = useState(0)
 
-  const { data: dojoData, error, isLoading } = useGetAllDojoQuery();
+  const { data: dojoData, error, isLoading } = useGetAllDojoQuery({
+    page: pageclick, // Default value if not provided
+    limit: limit, // Default value if not provided
+    // eventtype: eventType,
+    sortBy: 'createdAt', // Default value if not provided
+    sortOrder: 'desc', // Default value if not provided
+    filter: {}, // Default value if not provided
+    search: search // Default value if not provided
+  });
+
+  
+    const targetRef = React.useRef(null);
+  
+  
+  
+    const handlePageClick = (event) => {
+      setPageClick(event.selected + 1);
+      // const newOffset = (event.selected * limit) % geteventdata?.data?.length;
+      // window.scrollTo({ top: 0, behavior: "smooth" });
+      
+      targetRef.current.scrollIntoView({ behavior: "smooth" });
+      console.log("wake")
+    };
+  
+    useEffect(() => {
+      setPageClick(1)
+  
+  
+    }, [search]);
+  
+  
+  
+  
+  
+  
+    useEffect(() => {
+  
+      setinital(0)
+  
+    }, [limit])
+  
+    const pageCount = dojoData?.count;
+  
+  
+    console.log(pageCount, 'this is pagecount')
 
   console.log(dojoData, 'walking dojo')
   const [addDojoapi] = useAddDojoMutation();
@@ -148,6 +197,7 @@ function Dojo() {
 
 
   return (
+    <>
     <div className="container mx-auto p-4 relative">
       <div className='flex justify-between '>
 
@@ -228,7 +278,7 @@ function Dojo() {
           </tr>
         </thead>
         <tbody>
-          {dojoData?.map(dojo => (
+          {dojoData?.data?.map(dojo => (
             <tr key={dojo._id} className="border-b border-light-blue h-14">
               <td className="px-4 py-2 text-center">{dojo.dojoName} </td>
               <td className="px-4 py-2 text-center">{dojo.incharge} </td>
@@ -341,6 +391,25 @@ function Dojo() {
 
       <ToastContainer />
     </div>
+
+    
+<ReactPaginate
+breakLabel="..."
+onPageChange={handlePageClick}
+pageCount={pageCount / limit}
+containerClassName="containerpaginate"
+pageClassName="inactivemypaginate"
+pageLinkClassName="paginate-link" // This will ensure the link is styled correctly
+activeClassName="activemypaginate"
+activeLinkClassName="active-paginate-link"
+nextLabel={<span className="flaticon-right-arrow"><IoIosArrowForward /></span>}
+previousLabel={<span className="flaticon-left-arrow"><IoIosArrowBack /></span>}
+pageRangeDisplayed={2}
+marginPagesDisplayed={1}
+forcePage={pageclick - 1}
+/>
+
+</>
   );
 }
 

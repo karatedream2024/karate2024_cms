@@ -5,6 +5,8 @@ import { useSelector } from 'react-redux';
 import Register from './Components/Register/Register';
 import Tournament from './Components/Tournment/Tournment';
 import User from './Components/User/User';
+import { MutatingDots } from 'react-loader-spinner';
+import Dashboard from './Components/Dashboard/Dashboard';
 
 // Lazy loaded components
 const Navbar = React.lazy(() => import('./Components/Navbar/Navbar'));
@@ -23,7 +25,7 @@ function App() {
   const authData = useSelector((state) => state.auth.authdata);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  
+
   const userLoginData = JSON.parse(localStorage.getItem('userlogindata'));
 
   console.log(userLoginData, 'linking')
@@ -38,15 +40,28 @@ function App() {
     }
   }, [userLoginData]);
 
-
-
   return (
     <BrowserRouter>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={
+        <div className='h-screen w-screen flex justify-center items-center'>
+          <MutatingDots
+            visible={true}
+            height="100"
+            width="100"
+            color="#4fa94d"
+            secondaryColor="#4fa94d"
+            radius="12.5"
+            ariaLabel="mutating-dots-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+          />
+        </div>}>
         <Routes>
           {isLoggedIn ? (
             <Route path="/" element={<Navbar />}>
-              <Route index element={<Student />} />
+              {/* <Route index element={<Student />} /> */}
+              <Route index element={<Dashboard />} />
+              <Route path="/student" element={<Student />} />
               <Route path="/event" element={<Event />} />
               <Route path="/dojo" element={<Dojo />} />
               <Route path="/blog" element={<Blog />} />
@@ -62,8 +77,8 @@ function App() {
           ) : (
             <Route path="/" element={<LoginPage />} />
           )}
-        </Routes> 
-      </Suspense> 
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 }

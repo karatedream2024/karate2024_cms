@@ -2,8 +2,13 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCheckUserMutation } from '../../features/api/loginapi';
 import { toast } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+
 import { useDispatch } from 'react-redux';
 import { authdata } from '../../features/slice/login';
+import karatelogo from "../../assets/karatelogo.png"
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -33,15 +38,15 @@ function LoginPage() {
       console.log(userlogindata, 'userlogin');
       
       // Convert userlogindata to JSON string and store it in localStorage
-      localStorage.setItem('userlogindata', JSON.stringify(userlogindata));
-      
+  
    
       
       toast.success('Login successful');
-      dispatch(authdata(userlogindata?.token));
-      
+  
       setTimeout(() => {
-        
+        localStorage.setItem('userlogindata', JSON.stringify(userlogindata));
+        dispatch(authdata(userlogindata?.token));
+      
       navigate('/');
       }, 2000);
     } catch (error) {
@@ -59,34 +64,37 @@ function LoginPage() {
       />
       <div className='absolute top-0 mx-auto w-full'>
         <div className='flex justify-center items-center h-screen'>
-          <div className="w-[400px] h-[400px] backdrop:blur-2xl shadow-2xl p-10 border border-line rounded-xl shadow-default dark:border-strokedark dark:bg-boxdark">
-            <div className="border-b border-line py-4 px-6.5 dark:border-strokedark">
-              <h3 className="font-medium h4 text-logo_white">
-                Sign In Form
+          <div className="w-[90%] mx-auto md:w-[400px] min-h-[400px] backdrop:blur-2xl shadow-2xl p-10 border bg-white/90  text-black border-line rounded-xl shadow-default dark:border-strokedark dark:bg-boxdark">
+            <div className="border-b border-line  px-6.5 dark:border-strokedark">
+              <div className='flex justify-center' >
+            <img src={karatelogo} alt="Karate Logo" className="w-20 h-auto" />
+            </div>
+              <h3 className="font-medium h4  text-center">
+                Karate
               </h3>
             </div>
             <div className="p-6.5">
               <div className="mb-4.5">
-                <label className="mb-2.5 block h5 text-logo_white">
+                <label className="mb-2.5 block h5 ">
                   Username
                 </label>
                 <input
                   onChange={(e) => setUser({ ...user, email: e.target.value })}
                   type="text"
                   placeholder="Enter your email address"
-                  className="w-full rounded border-[1.5px] border-stroke bg-transparent bg-white/10 text-white py-3 px-5 text-black outline-none transition focus:border-blue active:border-blue"
+                  className="w-full rounded border-[1.5px] border-stroke bg-transparent bg-white/10  py-3 px-5 text-black outline-none transition focus:border-blue active:border-blue"
                 />
               </div>
 
               <div>
-                <label className="mb-2.5 block h5 text-logo_white">
+                <label className="mb-2.5 block h5 ">
                   Password
                 </label>
                 <input
                   onChange={(e) => setUser({ ...user, password: e.target.value })}
                   type="password"
                   placeholder="Enter password"
-                  className="w-full rounded border-[1.5px] border-stroke bg-transparent bg-white/10 text-white py-3 px-5 text-black outline-none transition focus:border-blue active:border-blue"
+                  className="w-full rounded border-[1.5px] border-stroke bg-transparent bg-white/10  py-3 px-5 text-black outline-none transition focus:border-blue active:border-blue"
                 />
               </div>
 
@@ -104,7 +112,7 @@ function LoginPage() {
 
               <button
                 onClick={handleSubmit}
-                className="flex w-full justify-center rounded h3 text-white bg-blue p-3 font-medium text-gray hover:bg-opacity-90"
+                className="flex w-full justify-center h5  bg-logo_blue text-white rounded-md p-3 font-medium text-gray hover:bg-opacity-90"
                 disabled={isLoading}
               >
                 {isLoading ? 'Signing In...' : 'Sign In'}
@@ -113,6 +121,7 @@ function LoginPage() {
           </div>
         </div>
       </div>
+<ToastContainer />
     </div>
   );
 }

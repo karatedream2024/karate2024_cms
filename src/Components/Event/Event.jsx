@@ -9,8 +9,63 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAddEventMutation, useDeleteEventMutation, useGetAllEventQuery, useUpdateEventMutation } from '../../features/api/eventapi';
 
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
+import ReactPaginate from 'react-paginate';
+
 function Event() {
-  const { data: eventData, error, isLoading } = useGetAllEventQuery();
+  
+  const [pageclick, setPageClick] = useState(1);
+  const [search, setSearch] = useState("")
+  const [limit, setlimit] = useState(3)
+  const [initial, setinital] = useState(0)
+  const [eventType, setEventType] = useState("upcoming")
+
+  const { data: eventData, error, isLoading } = useGetAllEventQuery({
+    page: pageclick, // Default value if not provided
+    limit: limit, // Default value if not provided
+    eventtype: eventType,
+    // sortBy: 'createdAt', // Default value if not provided
+    // sortOrder: 'desc', // Default value if not provided
+    // filter: {}, // Default value if not provided
+    // search: search // Default value if not provided
+  });
+
+  const targetRef = React.useRef(null);
+
+
+
+  const handlePageClick = (event) => {
+    setPageClick(event.selected + 1);
+    // const newOffset = (event.selected * limit) % geteventdata?.data?.length;
+    // window.scrollTo({ top: 0, behavior: "smooth" });
+    
+    targetRef.current.scrollIntoView({ behavior: "smooth" });
+    console.log("wake")
+  };
+
+  useEffect(() => {
+    setPageClick(1)
+
+
+  }, [search, eventType]);
+
+
+
+
+
+
+  useEffect(() => {
+
+    setinital(0)
+
+  }, [limit, eventType])
+
+  const pageCount = eventData?.count;
+
+
+  console.log(pageCount, 'this is pagecount')
+
+
   const [addeventapi] = useAddEventMutation();
   const [updateeventapi] = useUpdateEventMutation();
   const [deleteeventapi] = useDeleteEventMutation();
@@ -128,6 +183,7 @@ function Event() {
   }, [showview]);
 
   return (
+    <>
     <div className="container mx-auto p-4 relative">
 
       <div className='flex justify-between'>
@@ -159,6 +215,26 @@ function Event() {
             Add Event
           </button>
         </div>
+      </div>
+
+      <div data-aos="fade-in"     className='flex justify-center cursor-pointer my-4' >
+        <div className='flex bg-logo_blue/90 h-10 rounded-md shadow-lg' >
+          <div onClick={() => {
+            setEventType("upcoming")
+       
+          }} className={`${eventType == "upcoming" ? "bg-logo_blue h5 text-logo_yellow  " : "text-white"} flex justify-center items-center w-[150px] rounded-md`} >
+            Upcoming
+          </div>
+          <div onClick={() => {
+           
+            setEventType("completed")
+          }
+          } className={`${eventType == "completed" ? "bg-logo_blue h5 text-logo_yellow  " : "text-white"} flex justify-center items-center w-[150px] rounded-md`} >
+            Completed
+          </div>
+
+        </div>
+
       </div>
 
       {/* View event Modal */}
@@ -225,7 +301,7 @@ function Event() {
           </tr>
         </thead>
         <tbody>
-          {eventData?.map(event => (
+          {eventData?.data?.map(event => (
             <tr key={event._id} className="border-b border-light-blue h-14">
               <td className="px-4 py-2 text-center">{event.title}</td>
               <td className="px-4 py-2 text-center">{new Date(event.startdate).toLocaleDateString()}</td>
@@ -390,9 +466,30 @@ function Event() {
         </div>
       )}
 
+
       <ToastContainer />
     </div>
+
+<ReactPaginate
+breakLabel="..."
+onPageChange={handlePageClick}
+pageCount={pageCount / limit}
+containerClassName="containerpaginate"
+pageClassName="inactivemypaginate"
+pageLinkClassName="paginate-link" // This will ensure the link is styled correctly
+activeClassName="activemypaginate"
+activeLinkClassName="active-paginate-link"
+nextLabel={<span className="flaticon-right-arrow"><IoIosArrowForward /></span>}
+previousLabel={<span className="flaticon-left-arrow"><IoIosArrowBack /></span>}
+pageRangeDisplayed={2}
+marginPagesDisplayed={1}
+forcePage={pageclick - 1}
+/>
+
+</>
+
   );
+
 }
 
 export default Event;

@@ -6,11 +6,11 @@ import { useDispatch } from 'react-redux'
 import { authdata } from '../../features/slice/login'
 
 
-function Navbar({getlogin}) {
+function Navbar({ getlogin }) {
 
   const findUser = JSON.parse(localStorage.getItem('userlogindata'))
- const access = findUser?.userType
- console.log(access, 'workkk')
+  const access = findUser?.userType
+  console.log(access, 'workkk')
 
 
   const locate = useLocation()
@@ -44,14 +44,17 @@ function Navbar({getlogin}) {
 
   function localstorageclear() {
     localStorage.removeItem('login')
-  getlogin('d')
+    getlogin('d')
     navigate('/')
 
 
 
   }
 
-  function logout(){
+  function logout() {
+
+
+    
 
     localStorage.removeItem('userlogindata')
     navigate('/')
@@ -78,11 +81,9 @@ function Navbar({getlogin}) {
           </div>
         </div>
       </div>
-
-
       <div className='lg:hidden absolute'>
 
-        <div className={`${toggle ? 'w-[80%] sm:w-[50%] duration-700' : 'w-0'} bg-white h-[100vh] fixed right-0 z-40 `}>
+        <div className={`${toggle ? 'w-[80%] sm:w-[50%] duration-700' : 'w-0'} bg-white h-[100vh] fixed right-0 z-40  `}>
           <div className='flex justify-between px-5 items-center'>
             <div className='absolute top-0 right-0 '>
               <img className='h-10 w-10' src={logo} alt="" />
@@ -93,17 +94,9 @@ function Navbar({getlogin}) {
 
 
           </div>
-          <div>
-            <div className={`${toggle ? '' : 'hidden'} relative w-[80%] mx-auto mt-2 mb-5 `} >
-              <input type="text" className="outline-none border-none bg-background  h-12  w-[100%]   px-3 rounded-lg " />
-              <div className="absolute top-0 right-3 hover:text-blue-400   flex items-center justify-center h-full">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20"><path fill="currentColor" d="M8.195 0c4.527 0 8.196 3.62 8.196 8.084a7.989 7.989 0 0 1-1.977 5.267l5.388 5.473a.686.686 0 0 1-.015.98a.71.71 0 0 1-.993-.014l-5.383-5.47a8.23 8.23 0 0 1-5.216 1.849C3.67 16.169 0 12.549 0 8.084C0 3.62 3.67 0 8.195 0m0 1.386c-3.75 0-6.79 2.999-6.79 6.698c0 3.7 3.04 6.699 6.79 6.699s6.791-3 6.791-6.699c0-3.7-3.04-6.698-6.79-6.698" /></svg>
-              </div>
 
-            </div>
-          </div>
-          <Link   to='/'>
-            <div onClick={() => navbarchange('/')} className={`${nav === '/' ? 'border-l-4 rounded-full text-blue' : ''} `}>
+          <Link to='/'>
+            <div onClick={() => navbarchange('/')} className={`${nav === '/' ? 'border-l-4 rounded-full text-blue' : ''} mt-10 `}>
               <hr className='text-line' />
 
               <div className={` ${nav === '/' ? 'text-blue' : ''} my-3 pl-10 h5s`} >
@@ -117,13 +110,13 @@ function Navbar({getlogin}) {
               <hr className='text-line' />
 
               <div className={` ${nav === '/attendence' ? 'text-blue' : ''} my-3 pl-10 h5`} >
-              Add  Attendence
+                Add  Attendence
               </div>
               <hr className='text-line' />
             </div>
           </Link>
           <Link to='/showatten'>
-            <div  onClick={() => navbarchange('/showatten')} className={`${nav === '/showatten' ? 'border-l-4 rounded-full text-blue' : ''} `}>
+            <div onClick={() => navbarchange('/showatten')} className={`${nav === '/showatten' ? 'border-l-4 rounded-full text-blue' : ''} `}>
               <hr className='text-line' />
 
               <div className={` ${nav === '/showatten' ? 'text-blue' : ''} my-3 pl-10 h5`} >
@@ -167,7 +160,7 @@ function Navbar({getlogin}) {
               <hr className='text-line' />
 
               <div className={` ${nav === '/register' ? 'text-blue' : ''} my-3 pl-10 h5`} >
-              Register
+                Register
               </div>
               <hr className='text-line' />
             </div>
@@ -177,7 +170,7 @@ function Navbar({getlogin}) {
               <hr className='text-line' />
 
               <div className={` ${nav === '/contact' ? 'text-blue' : ''} my-3 pl-10 h5`} >
-              Contact
+                Contact
               </div>
               <hr className='text-line' />
             </div>
@@ -187,7 +180,7 @@ function Navbar({getlogin}) {
               <hr className='text-line' />
 
               <div className={` ${nav === '/tournment' ? 'text-blue' : ''} my-3 pl-10 h5`} >
-              Tournment
+                Tournment
               </div>
               <hr className='text-line' />
             </div>
@@ -197,11 +190,17 @@ function Navbar({getlogin}) {
               <hr className='text-line' />
 
               <div className={` ${nav === '/user' ? 'text-blue' : ''} my-3 pl-10 h5`} >
-              User
+                User
               </div>
               <hr className='text-line' />
             </div>
           </Link>
+          <div className='flex justify-start '>
+
+            <div onClick={() => logout()} className='my-3 py-3 rounded-lg text-center h5 bg-logo_blue text-white px-10'>
+              Logout
+            </div>
+          </div>
 
 
 
@@ -212,39 +211,41 @@ function Navbar({getlogin}) {
 
 
       {/* desktop navbar */}
-      <div className='w-[300px] h-[95%] overflow-hidden shadow-xl hidden lg:block m-5 bg-white rounded-2xl z-10  fixed '>
+      <div className='w-[300px] h-[95%] overflow-y-scroll shadow-xl hidden lg:block m-5 bg-white rounded-2xl z-10  fixed '>
         <div className='flex justify-around mt-5 items-center h3 text-center text-[#52525b]'>
           <div>
-          TNKKK
+            TNKKK
           </div>
           <div>
-          <img className='w-24' src={logo} alt="" />
+            <img className='w-24' src={logo} alt="" />
           </div>
         </div>
-     
         <div className=''>
-
-          
-
-          <Link  to='/'>
-              <div onClick={() => navbarchange('/')} className={`${nav === '/' ? '' : ''} `}>
-
-
+          <Link to='/'>
+            <div onClick={ () => navbarchange('/')} className={`${nav === '/' ? '' : ''} `}>
               <div className={`  ${nav === '/' ? 'text-white bg-blue  ' : 'hover:text-logo_blue hover:bg-blue/20 duration-300'}  h5 mx-[10%] py-2 rounded-lg mt-2 pl-[10%] flex text-letter-black  `} >
                 Dashboard
-                </div>
+              </div>
 
             </div>
           </Link>
- 
+          <Link to='/student'>
+            <div onClick={ () => navbarchange('/student')} className={`${nav === '/student' ? '' : ''} `}>
+              <div className={`  ${nav === '/student' ? 'text-white bg-blue  ' : 'hover:text-logo_blue hover:bg-blue/20 duration-300'}  h5 mx-[10%] py-2 rounded-lg mt-2 pl-[10%] flex text-letter-black  `} >
+                Student Details
+              </div>
 
-      
+            </div>
+          </Link>
+
+
+
           <Link to='/attendence'>
             <div onClick={() => navbarchange('/attendence')} className={`${nav === '/attendence' ? '' : ''} `}>
 
 
-            <div className={` ${nav === '/attendence' ? 'text-white bg-blue  ' : 'hover:text-logo_blue hover:bg-blue/20 duration-300'} h5 mx-[10%] py-2 rounded-lg mt-2 pl-[10%] flex text-letter-black  `} >
-              Attendence
+              <div className={` ${nav === '/attendence' ? 'text-white bg-blue  ' : 'hover:text-logo_blue hover:bg-blue/20 duration-300'} h5 mx-[10%] py-2 rounded-lg mt-2 pl-[10%] flex text-letter-black  `} >
+                Attendence
               </div>
 
             </div>
@@ -253,8 +254,8 @@ function Navbar({getlogin}) {
             <div onClick={() => navbarchange('/showatten')} className={`${nav === '/showatten' ? '' : ''} `}>
 
 
-            <div className={` ${nav === '/showatten' ? 'text-white bg-blue  ' : 'hover:text-logo_blue hover:bg-blue/20 duration-300'} h5 mx-[10%] py-2 rounded-lg mt-2 pl-[10%] flex text-letter-black  `} >
-             Show Attendence
+              <div className={` ${nav === '/showatten' ? 'text-white bg-blue  ' : 'hover:text-logo_blue hover:bg-blue/20 duration-300'} h5 mx-[10%] py-2 rounded-lg mt-2 pl-[10%] flex text-letter-black  `} >
+                Show Attendence
               </div>
 
             </div>
@@ -265,8 +266,8 @@ function Navbar({getlogin}) {
             <div onClick={() => navbarchange('/event')} className={`${nav === '/event' ? '' : ''} `}>
 
 
-            <div className={` ${nav === '/event' ? 'text-white bg-blue  ' : 'hover:text-logo_blue hover:bg-blue/20 duration-300'} h5 mx-[10%] py-2 rounded-lg mt-2 pl-[10%] flex text-letter-black  `} >
-            Event
+              <div className={` ${nav === '/event' ? 'text-white bg-blue  ' : 'hover:text-logo_blue hover:bg-blue/20 duration-300'} h5 mx-[10%] py-2 rounded-lg mt-2 pl-[10%] flex text-letter-black  `} >
+                Event
               </div>
 
             </div>
@@ -276,8 +277,8 @@ function Navbar({getlogin}) {
             <div onClick={() => navbarchange('/blog')} className={`${nav === '/blog' ? '' : ''} `}>
 
 
-            <div className={` ${nav === '/blog' ? 'text-white bg-blue  ' : 'hover:text-logo_blue hover:bg-blue/20 duration-300'} h5 mx-[10%] py-2 rounded-lg mt-2 pl-[10%] flex text-letter-black  `} >
-            Blog
+              <div className={` ${nav === '/blog' ? 'text-white bg-blue  ' : 'hover:text-logo_blue hover:bg-blue/20 duration-300'} h5 mx-[10%] py-2 rounded-lg mt-2 pl-[10%] flex text-letter-black  `} >
+                Blog
               </div>
 
             </div>
@@ -286,8 +287,8 @@ function Navbar({getlogin}) {
             <div onClick={() => navbarchange('/dojo')} className={`${nav === '/dojo' ? '' : ''} `}>
 
 
-            <div className={` ${nav === '/dojo' ? 'text-white bg-blue  ' : 'hover:text-logo_blue hover:bg-blue/20 duration-300'} h5 mx-[10%] py-2 rounded-lg mt-2 pl-[10%] flex text-letter-black  `} >
-            Dojo
+              <div className={` ${nav === '/dojo' ? 'text-white bg-blue  ' : 'hover:text-logo_blue hover:bg-blue/20 duration-300'} h5 mx-[10%] py-2 rounded-lg mt-2 pl-[10%] flex text-letter-black  `} >
+                Dojo
               </div>
 
             </div>
@@ -296,8 +297,8 @@ function Navbar({getlogin}) {
             <div onClick={() => navbarchange('/register')} className={`${nav === '/register' ? '' : ''} `}>
 
 
-            <div className={` ${nav === '/register' ? 'text-white bg-blue  ' : 'hover:text-logo_blue hover:bg-blue/20 duration-300'} h5 mx-[10%] py-2 rounded-lg mt-2 pl-[10%] flex text-letter-black  `} >
-            Registration
+              <div className={` ${nav === '/register' ? 'text-white bg-blue  ' : 'hover:text-logo_blue hover:bg-blue/20 duration-300'} h5 mx-[10%] py-2 rounded-lg mt-2 pl-[10%] flex text-letter-black  `} >
+                Registration
               </div>
 
             </div>
@@ -306,8 +307,8 @@ function Navbar({getlogin}) {
             <div onClick={() => navbarchange('/contact')} className={`${nav === '/contact' ? '' : ''} `}>
 
 
-            <div className={` ${nav === '/contact' ? 'text-white bg-blue  ' : 'hover:text-logo_blue hover:bg-blue/20 duration-300'} h5 mx-[10%] py-2 rounded-lg mt-2 pl-[10%] flex text-letter-black  `} >
-            Contact
+              <div className={` ${nav === '/contact' ? 'text-white bg-blue  ' : 'hover:text-logo_blue hover:bg-blue/20 duration-300'} h5 mx-[10%] py-2 rounded-lg mt-2 pl-[10%] flex text-letter-black  `} >
+                Contact
               </div>
 
             </div>
@@ -316,8 +317,8 @@ function Navbar({getlogin}) {
             <div onClick={() => navbarchange('/tournment')} className={`${nav === '/tournment' ? '' : ''} `}>
 
 
-            <div className={` ${nav === '/tournment' ? 'text-white bg-blue  ' : 'hover:text-logo_blue hover:bg-blue/20 duration-300'} h5 mx-[10%] py-2 rounded-lg mt-2 pl-[10%] flex text-letter-black  `} >
-            Tournament
+              <div className={` ${nav === '/tournment' ? 'text-white bg-blue  ' : 'hover:text-logo_blue hover:bg-blue/20 duration-300'} h5 mx-[10%] py-2 rounded-lg mt-2 pl-[10%] flex text-letter-black  `} >
+                Tournament
               </div>
 
             </div>
@@ -326,8 +327,8 @@ function Navbar({getlogin}) {
             <div onClick={() => navbarchange('/user')} className={`${nav === '/user' ? '' : ''} `}>
 
 
-            <div className={` ${nav === '/user' ? 'text-white bg-blue  ' : 'hover:text-logo_blue hover:bg-blue/20 duration-300'} h5 mx-[10%] py-2 rounded-lg mt-2 pl-[10%] flex text-letter-black  `} >
-            Permission
+              <div className={` ${nav === '/user' ? 'text-white bg-blue  ' : 'hover:text-logo_blue hover:bg-blue/20 duration-300'} h5 mx-[10%] py-2 rounded-lg mt-2 pl-[10%] flex text-letter-black  `} >
+                Permission
               </div>
 
             </div>
@@ -342,11 +343,11 @@ function Navbar({getlogin}) {
             </div>
           </Link> */}
           <div className={` `}>
-            <div onClick={()=>logout()} className={` text-white text-center  bg-black   h6 mx-[10%] py-2 rounded-lg mt-2  flex justify-center text-letter-black  `} >
-              Log Out 
+            <div onClick={() => logout()} className={` text-white text-center  bg-black   h6 mx-[10%] py-2 rounded-lg mt-2  flex justify-center text-letter-black  `} >
+              Logout 
             </div>
           </div>
-        </div> 
+        </div>
       </div>
       <div className='w-[100%] mx-auto lg:pl-[340px]  overflow-x-hidden mt-14 lg:mt-6 '>
 

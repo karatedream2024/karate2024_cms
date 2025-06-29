@@ -190,7 +190,7 @@ function Student() {
           <button
             type="button"
             onClick={handleAddStudentClick}
-            className="px-6 py-3.5 text-base font-medium text-white bg-logo_green hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center"
+            className="px-6  mb-3 text-base font-medium text-white bg-logo_green hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center"
           >
             Add Student
           </button>

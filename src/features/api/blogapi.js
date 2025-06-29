@@ -22,13 +22,12 @@ const bookingApi = api.injectEndpoints({
     }),  
 
     getAllBlog: builder.query({
-      query: () => ({
-          url: '/blog/getblog',
-          method: "GET",
+      query: ({ page, limit}) => ({
+        url: `/blog/getblog/${limit}/${page}`,
+        method: "GET",
       }),
       providesTags: ['blog'],
-  
-  }),
+    }),
 
   updateBlog: builder.mutation({
     query: ({id,values}) => ({

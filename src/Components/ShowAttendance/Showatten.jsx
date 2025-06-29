@@ -138,7 +138,13 @@ function Showatten() {
                         </tr>
                     </thead>
                     <tbody>
-                        {output?.map((student) => {
+                        
+                    {
+
+                        output.length == 0 ? <tr><td colSpan={6} className='text-center py-[10%] text-lg font-semibold'>No Data Found</td></tr> : 
+                    
+                    
+                    output?.map((student) => {
                             let totalPresent = 0;
                             let totalAbsent = 0;
                             let totalLate = 0;
@@ -177,7 +183,10 @@ function Showatten() {
                                   
                                 </tr>
                             );
-                        })}
+                        })
+                        
+                        
+                        }
                     </tbody>
 
                 </table>

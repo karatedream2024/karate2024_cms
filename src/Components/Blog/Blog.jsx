@@ -8,9 +8,63 @@ import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAddBlogMutation, useDeleteBlogMutation, useGetAllBlogQuery, useUpdateBlogMutation } from '../../features/api/blogapi';
+import ReactPaginate from 'react-paginate';
 
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 function Blog() {
-  const { data: blogData, error, isLoading } = useGetAllBlogQuery();
+  
+  const [pageclick, setPageClick] = useState(1);
+  const [search, setSearch] = useState("")
+  const [limit, setlimit] = useState(3)
+  const [initial, setinital] = useState(0)
+  const { data: blogData, error, isLoading } = useGetAllBlogQuery({
+    page: pageclick, // Default value if not provided
+    limit: limit, // Default value if not provided
+    // eventtype: eventType,
+    sortBy: 'createdAt', // Default value if not provided
+    sortOrder: 'desc', // Default value if not provided
+    filter: {}, // Default value if not provided
+    search: search // Default value if not provided
+  });
+
+  
+ 
+  
+    const targetRef = React.useRef(null);
+  
+  
+  
+    const handlePageClick = (event) => {
+      setPageClick(event.selected + 1);
+      // const newOffset = (event.selected * limit) % geteventdata?.data?.length;
+      // window.scrollTo({ top: 0, behavior: "smooth" });
+      
+      targetRef.current.scrollIntoView({ behavior: "smooth" });
+      console.log("wake")
+    };
+  
+    useEffect(() => {
+      setPageClick(1)
+  
+  
+    }, [search]);
+  
+  
+  
+  
+  
+  
+    useEffect(() => {
+  
+      setinital(0)
+  
+    }, [limit])
+  
+    const pageCount = blogData?.count;
+  
+  
+    console.log(pageCount, 'this is pagecount')
+  
   const [addblogapi] = useAddBlogMutation();
   const [updateblogapi] = useUpdateBlogMutation();
   const [deleteblogapi] = useDeleteBlogMutation();
@@ -23,6 +77,8 @@ function Blog() {
     content: '',
     short_content: ''
   });
+
+  console.log(blogData, 'this is blog data');
   const [addUpdate, setaddUpdate] = useState();
   const openUpdateModal = (blog) => {
     setaddUpdate(blog);
@@ -118,6 +174,7 @@ function Blog() {
   }, [showview]);
 
   return (
+    <>
     <div className="container mx-auto p-4 relative">
       <div className='flex justify-between'>
         <h1 className="text-3xl font-bold mb-4">Blog Details</h1>
@@ -192,7 +249,7 @@ function Blog() {
           </tr>
         </thead>
         <tbody>
-          {blogData?.map(blog => (
+          {blogData?.data?.map(blog => (
             <tr key={blog._id} className="border-b border-light-blue h-14">
               <td className="px-4 py-2 text-center">{blog.title}</td>
               <td className="px-4 py-2 text-center">{new Date(blog.date).toLocaleDateString()}</td>
@@ -303,6 +360,23 @@ function Blog() {
 
       <ToastContainer />
     </div>
+
+    <ReactPaginate
+    breakLabel="..."
+    onPageChange={handlePageClick}
+    pageCount={pageCount / limit}
+    containerClassName="containerpaginate"
+    pageClassName="inactivemypaginate"
+    pageLinkClassName="paginate-link" // This will ensure the link is styled correctly
+    activeClassName="activemypaginate"
+    activeLinkClassName="active-paginate-link"
+    nextLabel={<span className="flaticon-right-arrow"><IoIosArrowForward /></span>}
+    previousLabel={<span className="flaticon-left-arrow"><IoIosArrowBack /></span>}
+    pageRangeDisplayed={2}
+    marginPagesDisplayed={1}
+    forcePage={pageclick - 1}
+    />
+    </>
   );
 }
 
